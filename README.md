@@ -70,9 +70,14 @@ node "E:\DataAutoBackup\nodejs\nodered\node_modules\node-red\red.js" -u "E:\Data
 <img width="1919" height="961" alt="image" src="https://github.com/user-attachments/assets/b9f60f93-303b-4988-8c70-eb8aadad4b2f" />
 
 ## 2.3. Tạo csdl tuỳ ý trên mssql (sql server 2022), nhớ các thông số kết nối: ip, port, username, password, db_name, table_name
+- Ok. Đã có sẵn csdl My_Profile với thông tin: ip=127.0.0.1, port=1433, username=sa, password=********, db_name=My_Profile,
+- table_name: ThongTinCaNhan, HocVan, KyNang, SoThich, KinhNghiemLamViec.
 ## 2.4. Cài đặt thư viện trên nodered
 - truy cập giao diện nodered bằng url: http://localhost:1880
 - cài đặt các thư viện: node-red-contrib-mssql-plus, node-red-node-mysql, node-red-contrib-telegrambot, node-red-contrib-moment, node-red-contrib-influxdb, node-red-contrib-duckdns, node-red-contrib-cron-plus
+  Ấn nút 3 gạch góc trên bên phải ==>Manager palette => chọn tab Install ==> Tìm kiếm thư viện cần tìm
+  <img width="1915" height="799" alt="image" src="https://github.com/user-attachments/assets/662aca64-d8ba-4963-a514-bb2f787b8f25" />
+
 - Sửa file `D:\nodejs\nodered\work\settings.js` : 
   tìm đến chỗ adminAuth, bỏ comment # ở đầu dòng (8 dòng), thay chuỗi mã hoá mật khẩu bằng chuỗi mới
     adminAuth: {
@@ -82,10 +87,16 @@ node "E:\DataAutoBackup\nodejs\nodered\node_modules\node-red\red.js" -u "E:\Data
             password: "chuỗi_mã_hoá_mật_khẩu",
             permissions: "*"
         }]
-    },   
+    },
+  <img width="1525" height="362" alt="image" src="https://github.com/user-attachments/assets/cd275e15-ffb4-4628-a90e-9da986ae4b18" />
+  
    với mã hoá mật khẩu có thể thiết lập bằng tool: https://tms.tnut.edu.vn/pw.php
 - chạy lại nodered bằng cách: mở cmd, vào thư mục `D:\nodejs\nodered` và chạy lệnh `nssm restart a1-nodered`
+  <img width="1308" height="330" alt="image" src="https://github.com/user-attachments/assets/044173c4-d88b-42e4-a9ce-7924628e36ba" />
+
   khi đó nodered sẽ yêu cầu nhập mật khẩu mới vào được giao diện cho admin tại: http://localhost:1880
+  <img width="1919" height="847" alt="image" src="https://github.com/user-attachments/assets/cfb621a0-3a1d-46a8-a472-9735ee02a163" />
+
 ## 2.5. tạo api back-end bằng nodered
 - tại flow1 trên nodered, sử dụng node `http in` và `http response` để tạo api
 - thêm node `MSSQL` để truy vấn tới cơ sở dữ liệu
