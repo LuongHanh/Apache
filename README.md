@@ -48,21 +48,27 @@
 ## 2.2. Cài đặt nodejs và nodered => Dùng làm backend
 - Cài đặt nodejs:
   + download file `https://nodejs.org/dist/v20.19.5/node-v20.19.5-x64.msi`  (đây ko phải bản mới nhất, nhưng ổn định)
-  + cài đặt vào thư mục `D:\nodejs`
+  + cài đặt vào thư mục `E:\DataAutoBackup\nodejs`
+   <img width="1371" height="652" alt="image" src="https://github.com/user-attachments/assets/a9ed3d61-c513-4336-9b59-c0629d439387" />
+
 - Cài đặt nodered:
-  + chạy cmd, vào thư mục `D:\nodejs`, chạy lệnh `npm install -g --unsafe-perm node-red --prefix "D:\nodejs\nodered"`
+  + chạy cmd, vào thư mục `E:\DataAutoBackup\nodejs`, chạy lệnh `npm install -g --unsafe-perm node-red --prefix "E:\DataAutoBackup\nodejs"`
   + download file: https://nssm.cc/release/nssm-2.24.zip
     giải nén được file nssm.exe
-    copy nssm.exe vào thư mục `D:\nodejs\nodered\`
-  + tạo file "D:\nodejs\nodered\run-nodered.cmd" với nội dung (5 dòng sau):
+    copy nssm.exe vào thư mục `E:\DataAutoBackup\nodejs\`
+  + tạo file "E:\DataAutoBackup\nodejs\nodered\run-nodered.cmd" với nội dung (5 dòng sau):
 @echo off
 REM fix path
-set PATH=D:\nodejs;%PATH%
+set PATH=E:\DataAutoBackup\nodejs;%PATH%
 REM Run Node-RED
-node "D:\nodejs\nodered\node_modules\node-red\red.js" -u "D:\nodejs\nodered\work" %*
-  + mở cmd, chuyển đến thư mục: `D:\nodejs\nodered`
-  + cài đặt service `a1-nodered` bằng lệnh: nssm.exe install a1-nodered "D:\nodejs\nodered\run-nodered.cmd"
+node "E:\DataAutoBackup\nodejs\nodered\node_modules\node-red\red.js" -u "E:\DataAutoBackup\nodejs\nodered\work" %*
+  + mở cmd, chuyển đến thư mục: `E:\DataAutoBackup\NODEJS\nodered`
+  + cài đặt service `a1-nodered` bằng lệnh: nssm.exe install a1-nodered "E:\DataAutoBackup\NODEJS\nodered\run-nodered.cmd"
   + chạy service `a1-nodered` bằng lệnh: `nssm start a1-nodered`
+    <img width="1351" height="767" alt="image" src="https://github.com/user-attachments/assets/df99c80a-75b6-4628-a6fc-8f6b0c302838" />
+    
+<img width="1919" height="961" alt="image" src="https://github.com/user-attachments/assets/b9f60f93-303b-4988-8c70-eb8aadad4b2f" />
+
 ## 2.3. Tạo csdl tuỳ ý trên mssql (sql server 2022), nhớ các thông số kết nối: ip, port, username, password, db_name, table_name
 ## 2.4. Cài đặt thư viện trên nodered
 - truy cập giao diện nodered bằng url: http://localhost:1880
