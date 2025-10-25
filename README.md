@@ -105,15 +105,23 @@ node "E:\DataAutoBackup\nodejs\nodered\node_modules\node-red\red.js" -u "E:\Data
   2. function : để tiền xử lý dữ liệu gửi đến
   3. MSSQL: để truy vấn dữ liệu tới CSDL, nhận tham số từ node tiền xử lý
   4. http response: để phản hồi dữ liệu về client: Status Code=200, Header add : Content-Type = application/json
+     <img width="1919" height="825" alt="image" src="https://github.com/user-attachments/assets/95a54b0f-4c7b-436b-aa2f-c16c9106414f" />
+
   có thể thêm node `debug` để quan sát giá trị trung gian.
-- test api thông qua trình duyệt, ví dụ: http://localhost:1880/timkiem?q=thị
+- test api thông qua trình duyệt, ví dụ: http://localhost:1880/timkiem?q=hạnh
+  <img width="1919" height="773" alt="image" src="https://github.com/user-attachments/assets/aed7b748-5501-4ab5-9818-cc508d0fe85b" />
+
 ## 2.6. Tạo giao diện front-end
 - html form gồm các file : index.html, fullname.js, fullname.css
   cả 3 file này đặt trong thư mục: `D:\Apache24\fullname`
   nhớ thay fullname là tên của bạn, viết liền, ko dấu, chữ thường, vd tên là Đỗ Duy Cốp thì fullname là `doduycop`
   khi đó 3 file sẽ là: index.html, doduycop.js và doduycop.css
+  <img width="1919" height="688" alt="image" src="https://github.com/user-attachments/assets/88a08a96-7533-4e86-9145-67fef9be8f80" />
+
 - index.html và fullname.css: trang trí tuỳ ý, có dấu ấn cá nhân, có form nhập được thông tin.
 - fullname.js: lấy dữ liệu trên form, gửi đến api nodered đã làm ở bước 2.5, nhận về json, dùng json trả về để tạo giao diện phù hợp với kết quả truy vấn của bạn.
+  <img width="1914" height="1079" alt="image" src="https://github.com/user-attachments/assets/ac343b61-ea61-4c7d-8d6b-3e7498270c33" />
+
 ## 2.7. Nhận xét bài làm của mình
 - đã hiểu quá trình cài đặt các phần mềm và các thư viện như nào?
 - đã hiểu cách sử dụng nodered để tạo api back-end như nào?
