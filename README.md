@@ -124,8 +124,27 @@ node "E:\DataAutoBackup\nodejs\nodered\node_modules\node-red\red.js" -u "E:\Data
 
 ## 2.7. Nhận xét bài làm của mình
 - đã hiểu quá trình cài đặt các phần mềm và các thư viện như nào?
+  Qua quá trình làm bài tập em hiểu khá rõ về các cài đặt các phần mềm, hiểu rõ cài đặt thư viện trong nodered. Biết các cấu hình các file, chạy các dịch vụ, hiểu cách tạo ra 1 website với fake domain trên máy tính của mình.
+  + Khi em cài Apache, trong file httpd.conf (file cấu hình chung cơ bản cho Apache) cần chú ý: Define SRVROOT phải có path chính xác tới vị trí đan cài đặt Apache24, cần module nào thì bỏ comment module đó đi là dùng được. Sau khi đã có active module và modified SRVROOT, tiếp theo là chỉnh các file cấu hình cụ thể trong module active, trong file httpd-vhosts.conf ta thấy ngay hướng dẫn tại những dòng đầu tiên, và đây là lý do ta phải active đúng module trong file httpd.conf trước đó:
+    <img width="829" height="158" alt="image" src="https://github.com/user-attachments/assets/441ea87b-8f45-4e84-9093-86830cf45ea8" />
+    Sau khi xác nhận là đã làm đúng rồi thì nó có phần hướng dẫn tạo hosts ảo cho website, thích bao nhiêu website tuỳ ý, miễn là làm đúng theo mẫu. Tuy nhiên để an toàn thì nên chuẩn bị 1 host fallback cho Apache, khi client gửi request đến 1 domain không khớp với ServerName thì Apache sẽ dùng host fallback này để hiển thị:
+    
+   <img width="1462" height="310" alt="image" src="https://github.com/user-attachments/assets/76c17703-485d-4c71-be0c-d0bc2aeb889d" />
+
+       Còn dưới đây là cấu trúc thiết lập cho bất kỳ host ảo nào mong muốn:
+   <img width="1503" height="446" alt="image" src="https://github.com/user-attachments/assets/06a04fdc-29bf-4752-b13f-f04e9a21f22f" />
+
+   + Đối với nodejs,nodered: Cần chú ý download đúng bản win64(phù hợp với hệ điều hành window hiện nay). Các lưu ý em nhận ra trong khi làm: Thư mục cài đặt nodejs phải có tên là "nodejs", nếu đặt khác sẽ gây lỗi tùm lum, bằng chứng là em đã đặt tên thư mục là NODEJS và boommm...(lỗi tùm lum). Các bước cài đặt làm như trên.
+   + Lưu ý chung: Khi cài đặt 1 phần mềm hay dịch vụ nào đó ta cần chú ý đến: Đường dẫn nó cài đặt, tên thư mục chứa nó, ip mở nó, port (cổng) mà nó chiễm dụng, vấn đề về port là rất hay xảy ra, điều này làm cho các phần mềm (dịch vụ) hoặc là không nghe được port hoặc là tranh nhau port, khi điều đó xảy ra thì các phần mềm sẽ không hoạt động hoặc hoạt động sai.
 - đã hiểu cách sử dụng nodered để tạo api back-end như nào?
+  Em đã dùng qua nodejs để tạo website trong đồ án trước và trong 1 vài dự án cá nhân (nghịch code) nhưng toàn đi copy trên chatGPT, vì nó quá khó hiểu. Giờ thì nodered đã giúp em đá đít nodejs ra chuồng gà, nó dễ chịu hơn nodejs nhiều, nhìn giao diện UI cũng đẹp mắt hơn. Trong bài trên chỉ sử dụng 4 node cơ bản khép kín, dưới đây là kiến thức em thu nạp được:
+  + Node http in: Nhận request từ client với dữ liệu và method phù hợp (GET/POST/PUT/DELETE...). Khi show tab network, key+value nằm trong payload.
+  + Node function: Tiền xử lý dữ liệu trước khi gửi tới db. Ở đây nó sẽ nhận được và xử lý request từ client gửi lên trước khi gửi tới db. Nó định dạng dữ liệu và định hình truy vấn phù hợp với từng loại CSDL để lấy được thông tin chính xác nhất.
+  + Node MSSQL: Kết nối và truy vấn CSDL SQL Server. Đây là thư viện chuẩn dùng để kết nối và truy vấn SQL Server bằng chính truy vấn mà node function gửi lên, thư viện này cho phép sử dụng luôn code truy vấn SQL mà không cần phải dịch từ ngôn ngữ khác.
+  + Node http response: Gửi dữ liệu từ NodeRed về client. Sau khi db trả về dữ liệu(hoặc lỗi) no sẽ gửi đến client, ở trình duyệt phía client mở tab network sẽ thấy dữ liệu được trả về trong response, giờ thì front-end chỉ cần đọc đúng cấu trúc của dữ liệu được trả về và view ra giao diện.
 - đã hiểu cách frond-end tương tác với back-end ra sao?
+  + Người ta hay ví back-end (BE) như là người đầu bếp, API như là người phục vụ, front-end (FE) như khách hàng; Trên tinh thần đó, ánh xạ sang dự án website ta có BE xử lý dữ liệu, API là cầu nối mang những yêu cầu từ phía end user đến cho BE và mang những dữ liệu mà BE trả về cho FE hiển thị ra giao diện.
+  + Trong bài này, khi em đã xây dựng BE thành công, API chạy ngon lành, dữ liệu trả về chính xác thì tức là đã xong phần lớn website rồi. Phần còn lại là viết FE tạo cho website giao diện đẹp như mong muốn, khi end user thao tác vào giao diện, chẳng hạn nhập vào form, ấn nút gửi, khi này request đấy được gửi đúng tới API đã setup sẵn trong code BE và dữ liệu mong muốn sẽ được trả về FE, đúng kiểu đến là đón. Và vị trí gọi tới API sẽ nằm trong file js, render html cũng nằm luôn ở file js. Hay nói cách khác html là khung xương của trang web (nó chứa text, input, button, table, image, video,...), css là làm đẹp cho trang web (nó là các chuyển động color, border, position, keyframe, media, hover, highlight, change color, scale, rotate,...), js là các logic phía FE và giao tiếp với API, nó cũng tham gia vào các chuyển động phức tạp hơn css, render content,...
 ==============================
 # TIÊU CHÍ CHẤM ĐIỂM
 1. y/c bắt buộc về thời gian: ko quá Deadline, quá: 0 điểm (ko có ngoại lệ)
